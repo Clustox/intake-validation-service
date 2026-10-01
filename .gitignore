@@ -1,0 +1,5 @@
+node_modules/
+.env
+verify-report.json
+*.log
+var/

@@ -1,0 +1,32 @@
+:root { --fg:#1d232b; --muted:#5d6875; --bg:#f5f6f8; --card:#fff; --line:#dde1e6; --accent:#1f5fbf;
+  --clean:#1e7a3c; --failed:#b3261e; --incomplete:#9a6200; --skipped:#5d6875; }
+* { box-sizing: border-box; }
+body { margin:0; font:15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--fg); background:var(--bg); }
+.top { display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding:12px 20px; background:var(--card); border-bottom:1px solid var(--line); }
+nav { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+nav a { color:var(--accent); text-decoration:none; }
+main { max-width:1200px; margin:0 auto; padding:16px; }
+h1 { font-size:22px; margin:8px 0 16px; } h2 { font-size:17px; margin:0 0 12px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:16px; margin-bottom:16px; overflow-x:auto; }
+.narrow { max-width:380px; }
+label { display:block; margin-bottom:10px; font-weight:600; font-size:13px; }
+label.inline { display:inline-block; }
+input, select, textarea { display:block; width:100%; margin-top:4px; padding:7px 9px; font:inherit; font-weight:400; border:1px solid var(--line); border-radius:6px; }
+label.inline select { display:inline-block; width:auto; }
+textarea { font-family:ui-monospace, Menlo, monospace; font-size:13px; }
+button { font:inherit; padding:7px 14px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+button.secondary, button.link { background:transparent; color:var(--accent); }
+button.link { border:0; padding:0; }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+th, td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+code, pre { font-family:ui-monospace, Menlo, monospace; font-size:12.5px; }
+pre { white-space:pre-wrap; word-break:break-word; margin:0; }
+.muted { color:var(--muted); }
+.badge { display:inline-block; padding:1px 8px; border-radius:10px; font-size:12px; font-weight:700; color:#fff; }
+.badge.clean, .badge.pass { background:var(--clean); } .badge.failed, .badge.fail { background:var(--failed); }
+.badge.incomplete, .badge.unknown { background:var(--incomplete); } .badge.skipped { background:var(--skipped); }
+.banner { padding:12px 14px; border-radius:8px; margin-bottom:16px; border:1px solid; }
+.banner.clean { border-color:var(--clean); } .banner.failed { border-color:var(--failed); } .banner.incomplete { border-color:var(--incomplete); }
+#flash .error { color:var(--failed); margin-bottom:12px; } #flash .ok { color:var(--clean); margin-bottom:12px; }
+.hash { font-family:ui-monospace, Menlo, monospace; font-size:11px; color:var(--muted); }
+body:not(.is-admin) .admin-only { display:none; }

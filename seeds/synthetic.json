@@ -1,0 +1,53 @@
+{
+  "_comment": "Synthetic data only. Every name, code and email here is invented. Passwords come from SEED_USER_PASSWORD.",
+  "organisations": [
+    {
+      "name": "Northwind Synthetic Ltd",
+      "users": [
+        { "email": "admin@northwind.example", "display_name": "Nora Admin", "role": "admin" },
+        { "email": "clerk@northwind.example", "display_name": "Niall Clerk", "role": "submitter" }
+      ],
+      "reference": {
+        "ref_suppliers": [
+          { "code": "SUP-100", "name": "Acme Components (synthetic)" },
+          { "code": "SUP-200", "name": "Globex Logistics (synthetic)" },
+          { "code": "SUP-300", "name": "Initech Services (synthetic)" }
+        ],
+        "ref_cost_centres": [
+          { "code": "CC-OPS", "name": "Operations" },
+          { "code": "CC-FIN", "name": "Finance" }
+        ]
+      },
+      "rules": [
+        { "name": "Invoice number required", "rule_type": "required", "field": "invoice_number", "config": {}, "message": "Invoice number is required." },
+        { "name": "Amount required", "rule_type": "required", "field": "amount", "config": {}, "message": "Amount is required." },
+        { "name": "Amount within approval limit", "rule_type": "range", "field": "amount", "config": { "min": 0.01, "max": 50000 }, "message": "Amount must be between 0.01 and 50,000." },
+        { "name": "Invoice number format", "rule_type": "regex", "field": "invoice_number", "config": { "pattern": "^INV-[0-9]{4}-[0-9]{4,6}$" }, "message": "Invoice number must look like INV-2026-0001." },
+        { "name": "Currency code format", "rule_type": "regex", "field": "currency", "config": { "pattern": "^(EUR|GBP|USD)$" }, "message": "Currency must be EUR, GBP or USD." },
+        { "name": "Invoice date valid", "rule_type": "date", "field": "invoice_date", "config": { "min": "2020-01-01", "max": "2030-12-31" }, "message": "Invoice date must be a real date between 2020-01-01 and 2030-12-31." },
+        { "name": "Due date not before invoice date", "rule_type": "cross_field", "field": "due_date", "config": { "other_field": "invoice_date", "operator": "gte", "compare_as": "date" }, "message": "Due date cannot be earlier than the invoice date." },
+        { "name": "Supplier is known", "rule_type": "lookup", "field": "supplier_code", "config": { "table": "ref_suppliers", "column": "code" }, "message": "Supplier code is not in the supplier register." },
+        { "name": "Cost centre is known", "rule_type": "lookup", "field": "cost_centre", "config": { "table": "ref_cost_centres", "column": "code", "optional": true }, "message": "Cost centre is not recognised." }
+      ]
+    },
+    {
+      "name": "Contoso Synthetic GmbH",
+      "users": [
+        { "email": "admin@contoso.example", "display_name": "Carla Admin", "role": "admin" },
+        { "email": "clerk@contoso.example", "display_name": "Conrad Clerk", "role": "submitter" }
+      ],
+      "reference": {
+        "ref_suppliers": [
+          { "code": "SUP-100", "name": "Different supplier with the same code (synthetic)" },
+          { "code": "SUP-900", "name": "Umbrella Supplies (synthetic)" }
+        ],
+        "ref_cost_centres": []
+      },
+      "rules": [
+        { "name": "Reference required", "rule_type": "required", "field": "reference", "config": {}, "message": "Reference is required." },
+        { "name": "Quantity range", "rule_type": "range", "field": "quantity", "config": { "min": 1, "max": 1000 }, "message": "Quantity must be between 1 and 1,000." },
+        { "name": "Supplier is known", "rule_type": "lookup", "field": "supplier_code", "config": { "table": "ref_suppliers", "column": "code" }, "message": "Supplier code is not registered for Contoso." }
+      ]
+    }
+  ]
+}
